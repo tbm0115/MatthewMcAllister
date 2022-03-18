@@ -1,0 +1,46 @@
+﻿<h3>@ProductName</h3>
+
+<div class="container-fluid">
+    @ChildContent
+</div>
+
+<hr/>
+
+<dl class="row">
+    <dt class="col-sm-3">Make</dt>
+    <dd class="col-sm-9">@ProductMake</dd>
+    <dt class="col-sm-3">Model</dt>
+    <dd class="col-sm-9">@ProductModel</dd>
+    <dt class="col-sm-3">Manual</dt>
+    <dd class="col-sm-9">
+        @if (!string.IsNullOrEmpty(ManualUrl))
+        {
+            <figure class="figure">
+                <QR URL="@ManualUrl" CssClass="figure-img w-50" />
+                <figcaption class="figure-caption">
+                    <a href="@ManualUrl">Go</a>
+                </figcaption>
+            </figure>
+        } else
+        {
+            <span>&mdash;</span>
+        }
+    </dd>
+</dl>
+
+@code {
+    [Parameter]
+    public string ProductName { get; set; }
+
+    [Parameter]
+    public string ProductMake { get; set; }
+
+    [Parameter]
+    public string ProductModel { get; set; }
+
+    [Parameter]
+    public string ManualUrl { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

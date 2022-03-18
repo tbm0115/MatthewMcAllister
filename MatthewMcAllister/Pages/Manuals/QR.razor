@@ -1,0 +1,23 @@
+﻿@using QRCoder
+
+<img src="data:image/png;base64, @base64Image" class="@CssClass" />
+
+@code {
+    [Parameter]
+    public string URL { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; }
+
+    private string base64Image { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var qrGenerator = new QRCodeGenerator();
+        var codeData = qrGenerator.CreateQrCode(URL, QRCodeGenerator.ECCLevel.Q);
+        var code = new QRCoder.PngByteQRCode(codeData);
+        byte[] imgbytes = code.GetGraphic(10);
+
+        base64Image = Convert.ToBase64String(imgbytes);
+    }
+}

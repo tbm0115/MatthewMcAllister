@@ -1,0 +1,42 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+@using MatthewMcAllister.Models
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+    <UpdatePWA></UpdatePWA>
+</div>
+
+@code {
+    bool PWAUpdateAvailable { get; set; }
+    
+    private UpdateAvailableEventInterop UpdateAvailableInterop { get; set; }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UpdateAvailableInterop = new(JSRuntime);
+            await UpdateAvailableInterop.SetupCallback(async () => await HandleUpdateAvailable());
+        }
+    }
+
+    private async Task HandleUpdateAvailable() {
+        Console.WriteLine("PWA Update Available");
+        PWAUpdateAvailable = true;
+        StateHasChanged();
+    }
+
+    void HandleUpdateCallback(bool updated) {
+        PWAUpdateAvailable = !updated;
+        StateHasChanged();
+    }
+}

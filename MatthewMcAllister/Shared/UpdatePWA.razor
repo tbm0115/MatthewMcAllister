@@ -1,0 +1,30 @@
+﻿@inject IJSRuntime JSRuntime
+<div class="offcanvas offcanvas-start" tabindex="-1" id="pwaUpdate" aria-labelledby="pwaUpdateLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="pwaUpdateLabel">Update Available</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" @onclick="@HandleDismissed"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Would you like to update the app?</p>
+        <button type="button" class="btn btn-primary btn-sm" @onclick="@UpdateServiceWorker">Update</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast" @onclick="@HandleDismissed">Dismiss</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool UpdateAvailable { get; set; }
+
+    [Parameter]
+    public Action<bool> ActionCallback { get; set; }
+
+    async void UpdateServiceWorker()
+    {
+        await JSRuntime.InvokeVoidAsync("serviceWorker.update");
+        ActionCallback(true);
+    }
+
+    void HandleDismissed() {
+        ActionCallback(false);
+    }
+}
