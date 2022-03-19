@@ -1,0 +1,40 @@
+﻿@page "/tools/formula-feeding"
+@using MatthewMcAllister.Models
+
+<h3>Formula Feeding Chart</h3>
+
+<div class="table table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Age Range</th>
+                <th>Frequency/day</th>
+                <th>Amount per feeding</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recommendation in Recommendations)
+           {
+                string cssClass = AgeInMonths >= recommendation.MinimumMonths && AgeInMonths < recommendation.MaximumMonths ? "table-success" : "";
+                <tr class="@cssClass">
+                <td>@(recommendation.MinimumMonths) months to @(recommendation.MaximumMonths)</td>
+                <td>@(recommendation.MinimumFeedings)-@(recommendation.MaximumFeedings) feedings</td>
+                <td>@(recommendation.MinimumOuncesPerFeeding)-@(recommendation.MaximumFeedings)fl oz each</td>
+            </tr>
+           }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private int AgeInMonths = AgeHelper.GetAge(AgeType.Month);
+    private FormulaFeedingRecommendation[] Recommendations = new FormulaFeedingRecommendation[]
+        {
+            new FormulaFeedingRecommendation{ MinimumMonths = 0, MaximumMonths = 0.25, MinimumFeedings = 6, MaximumFeedings = 10, MinimumOuncesPerFeeding = 2, MaximumOuncesPerFeeding = 3 },
+            new FormulaFeedingRecommendation{ MinimumMonths = 0.25, MaximumMonths = 1, MinimumFeedings = 7, MaximumFeedings = 8, MinimumOuncesPerFeeding = 2, MaximumOuncesPerFeeding = 4 },
+            new FormulaFeedingRecommendation{ MinimumMonths = 1, MaximumMonths = 3, MinimumFeedings = 5, MaximumFeedings = 6, MinimumOuncesPerFeeding = 4, MaximumOuncesPerFeeding = 5 },
+            new FormulaFeedingRecommendation{ MinimumMonths = 3, MaximumMonths = 6, MinimumFeedings = 4, MaximumFeedings = 5, MinimumOuncesPerFeeding = 6, MaximumOuncesPerFeeding = 7 },
+            new FormulaFeedingRecommendation{ MinimumMonths = 6, MaximumMonths = 9, MinimumFeedings = 3, MaximumFeedings = 4, MinimumOuncesPerFeeding = 7, MaximumOuncesPerFeeding = 8 },
+            new FormulaFeedingRecommendation{ MinimumMonths = 9, MaximumMonths = 12, MinimumFeedings = 3, MaximumFeedings = 3, MinimumOuncesPerFeeding = 7, MaximumOuncesPerFeeding = 8 }
+        };
+}

@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using MatthewMcAllister.Models
 
 <PageTitle>Matthew Ayden McAllister</PageTitle>
 
@@ -12,18 +13,15 @@
         <dt class="col-sm-3">Birth Height</dt>
         <dd class="col-sm-9">19"</dd>
         <dt class="col-sm-3">Current Age</dt>
-        <dd class="col-sm-9">@(AgeInMonths) months</dd>
+        <dd class="col-sm-9">@(AgeHelper.GetAge(AgeType.Month)) months</dd>
     </dl>
 </div>
 
 <h3>Manuals</h3>
 <p>A list of machines, devices, apps, etc. used to make care easier. <a class="btn btn-outline-primary" href="/manuals">Go</a></p>
 
+<h3>Tools</h3>
+<p>A list of simple tools to make care easier. <a class="btn btn-outline-primary" href="/tools">Go</a></p>
+
 <h3>Supplies</h3>
 <p>An ongoing list of supplies and gift ideas are being maintained in a shared Amazon list. <a class="btn btn-outline-primary" href="https://www.amazon.com/hz/wishlist/ls/KUIQGRDZ8H8N?ref_=wl_share">Go</a></p>
-
-@code {
-    private static DateTime Birthdate = new DateTime(2022, 03, 10, 7, 22, 0);
-
-    private int AgeInMonths = (DateTime.Now.Month + DateTime.Now.Year * 12) - (Birthdate.Month + Birthdate.Year * 12);
-}
