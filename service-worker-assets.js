@@ -33,11 +33,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-gCpqyIg9BO739PlYO8KzdCMaAGqZS0H5u4IkTj9WuF8=",
+      "hash": "sha256-dlOZbIjJvDuYqgCgKUkw2PxZdKAEuEmLYO7\/kfauDIo=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-DQ2h1CnuisD6Dkvj5GioGSxbJ\/OIx+Yfjj4fgitCubE=",
+      "hash": "sha256-RVUDj9G72YzpFPD4jdwTKF4Uhp\/Bu9VyuEpYgR94aes=",
       "url": "_framework\/MatthewMcAllister.dll"
     },
     {
@@ -153,7 +153,7 @@
       "url": "_framework\/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "hash": "sha256-t7fqMK1ZyJi8Te6yyGi1yVpCX\/em9JCS65Y2QUsMrv8=",
+      "hash": "sha256-e10Rb4I1pReJR30ejvFHQjVbIN2jJ1rYli3bwOdw3rQ=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -741,5 +741,5 @@
       "url": "windows11\/Wide310x150Logo.scale-400.png"
     }
   ],
-  "version": "SYwZ1y8n"
+  "version": "Rj7H4V7K"
 };
