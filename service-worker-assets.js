@@ -33,11 +33,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-SZNcRVNJzqf17+N7MyDjw+J2sh8To9T6i5o4SZNRNDw=",
+      "hash": "sha256-1oi3mvdRU6x\/bFwPeb8ORD9F2nRZCAHfNfRJBbItEDE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-DHOt7ifEszyFv9+2PSBMeot7XXWiJgiZbZvglCi35WE=",
+      "hash": "sha256-kJgCPIWfFLxEAzKwvdo0N1BvXMFQClNvSYlMT5Dbr0E=",
       "url": "_framework\/MatthewMcAllister.dll"
     },
     {
@@ -757,5 +757,5 @@
       "url": "windows11\/Wide310x150Logo.scale-400.png"
     }
   ],
-  "version": "XbYn2Ig3"
+  "version": "due+R8Ui"
 };

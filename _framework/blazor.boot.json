@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "MatthewMcAllister.dll": "sha256-DHOt7ifEszyFv9+2PSBMeot7XXWiJgiZbZvglCi35WE=",
+      "MatthewMcAllister.dll": "sha256-kJgCPIWfFLxEAzKwvdo0N1BvXMFQClNvSYlMT5Dbr0E=",
       "Microsoft.AspNetCore.Components.dll": "sha256-9FIfA3J6f6XjACEv8+B9YmVGl1NPeve6u0hfotlAIls=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-J56CIqNtJKqXm6dWMAhvRI23W5p7RnErlWEDZVcwjV0=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-Izlw\/SnIKXEmOa2P51s8rKqkVBfJ+MDvJMUpyP5lHkk=",
