@@ -11,19 +11,14 @@
             {
                 case AgeType.Year:
                     return now.Year - Birthdate.Year;
-                    break;
                 case AgeType.Month:
                     return (now.Month + now.Year * 12) - (Birthdate.Month + Birthdate.Year * 12);
-                    break;
                 case AgeType.Week:
                     throw new NotImplementedException();
-                    break;
                 case AgeType.Day:
                     throw new NotImplementedException();
-                    break;
                 default:
                     throw new NotImplementedException();
-                    break;
             }
         }
     }

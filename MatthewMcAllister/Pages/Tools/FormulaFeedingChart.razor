@@ -2,14 +2,22 @@
 @using MatthewMcAllister.Models
 
 <h3>Formula Feeding Chart</h3>
-
+<p class="text-muted">Recommendations from <a href="https://www.similac.com/baby-feeding/development/nutrition-growth-chart.html">Similac.com</a>.</p>
+<div class="input-group mb-3">
+    <span class="input-group-text" id="lblUnits">Units</span>
+    <select id="selUnits" class="form-control" aria-describedby="lblUnits" @onchange="OnUnitsSelected">
+        <option value="fl oz" selected>Fluid Ounces</option>
+        <option value="mL">Milliliters</option>
+    </select>
+</div>
 <div class="table table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Age Range</th>
                 <th>Frequency/day</th>
-                <th>Amount per feeding</th>
+                <th>Amount/feeding</th>
+                <th>Fl. Oz./day</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +27,8 @@
                 <tr class="@cssClass">
                 <td>@(recommendation.MinimumMonths) months to @(recommendation.MaximumMonths)</td>
                 <td>@(recommendation.MinimumFeedings)-@(recommendation.MaximumFeedings) feedings</td>
-                <td>@(recommendation.MinimumOuncesPerFeeding)-@(recommendation.MaximumFeedings)fl oz each</td>
+                <td>@($"{convert(recommendation.MinimumOuncesPerFeeding)?.ToString("0.0")}-{convert(recommendation.MaximumOuncesPerFeeding)?.ToString("0.0")}{units}") each</td>
+                <td>@($"{convert(recommendation.MinimumFeedings * recommendation.MinimumOuncesPerFeeding)?.ToString("0.0")}-{convert(recommendation.MaximumFeedings * recommendation.MaximumOuncesPerFeeding)?.ToString("0.0")}{units}")</td>
             </tr>
            }
         </tbody>
@@ -27,6 +36,7 @@
 </div>
 
 @code {
+    private string units { get; set; } = "fl oz";
     private int AgeInMonths = AgeHelper.GetAge(AgeType.Month);
     private FormulaFeedingRecommendation[] Recommendations = new FormulaFeedingRecommendation[]
         {
@@ -37,4 +47,19 @@
             new FormulaFeedingRecommendation{ MinimumMonths = 6, MaximumMonths = 9, MinimumFeedings = 3, MaximumFeedings = 4, MinimumOuncesPerFeeding = 7, MaximumOuncesPerFeeding = 8 },
             new FormulaFeedingRecommendation{ MinimumMonths = 9, MaximumMonths = 12, MinimumFeedings = 3, MaximumFeedings = 3, MinimumOuncesPerFeeding = 7, MaximumOuncesPerFeeding = 8 }
         };
+
+    private void OnUnitsSelected(ChangeEventArgs e)
+    {
+        units = e.Value?.ToString() ?? "fl oz";
+    }
+
+    private double? convert(double ounces)
+    {
+        decimal? convertedValue = SIUnits.UnitManager.Convert($"{ounces}fl oz", units);
+        if (convertedValue.HasValue)
+        {
+            return (double?)convertedValue.Value;
+        }
+        return null;
+    }
 }
