@@ -1,0 +1,13 @@
+﻿@using MatthewMcAllister.Models
+<div class="card" style="min-width: 200px;">
+    <img src="@(Model.ImageUrl)" class="card-img-top" alt="" />
+    <div class="card-body">
+        <h5 class="card-title">@(Model.Name)</h5>
+        <p class="card-text">@(Model.Info)</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Dinosaur Model { get; set; }
+}

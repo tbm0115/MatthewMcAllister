@@ -1,0 +1,40 @@
+﻿@page "/entertainment/dinosaurs"
+@inject HttpClient Http
+
+<h3>Dinosaurs</h3>
+<div>
+    <p class="alert alert-info">Here are some example prompts using Google Assistant:</p>
+    <ul>
+        <li><emphasis>"Hey Google, tell me more about dinosaurs"</emphasis></li>
+        <li><emphasis>"Okay Google, what sound does a dinosaur make?"</emphasis></li>
+        <li><emphasis>"Okay Google, what does a Triceratops look like?"</emphasis></li>
+    </ul>
+</div>
+<div class="card-group">
+    @if (_loadingItems)
+    {
+        <p>Loading...</p>
+    } else
+    {
+        foreach(var item in _items)
+        {
+            <DinosaurCard Model="item" />
+        }
+    }
+</div>
+
+@code {
+    private bool _loadingItems = false;
+    private List<MatthewMcAllister.Models.Dinosaur> _items = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _loadingItems = true;
+        var options = new System.Text.Json.JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            };
+        _items = await Http.GetFromJsonAsync<List<MatthewMcAllister.Models.Dinosaur>>("json/dinosaurs.json", options);
+        _loadingItems = false;
+    }
+}
